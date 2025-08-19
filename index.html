@@ -11,46 +11,47 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f0f0f0; /* 페이지 배경색 */
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        #presentation-container {
+            width: 100vw;
+            height: 100vh;
         }
         .slide {
             display: none;
             width: 100%;
-            max-width: 1000px; /* 슬라이드 최대 너비 */
-            aspect-ratio: 16 / 9; /* 슬라이드 비율 */
-            background-color: #FFD700; /* 슬라이드 기본 배경색 */
-            color: #333333; /* 기본 글자색 */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            overflow: auto; /* 내용이 넘칠 경우 스크롤 (작은 화면 대비) */
+            height: 100%;
+            background-color: #FFD700;
+            color: #333333;
+            overflow: auto;
         }
         .slide.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
         /* 네비게이션 버튼 스타일 */
         .nav-button {
             position: fixed;
-            bottom: 10px;
-            transform: translateY(-50%);
+            bottom: 20px;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 24px;
             z-index: 100;
-            transition: background-color 0.3s ease;
+            transition: background-color: 0.3s ease;
         }
         .nav-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
         #prev {
-            left: 10px;
+            left: 20px;
         }
         #next {
-            right: 10px;
+            right: 20px;
         }
         /* 로딩 스피너 */
         .loader {
@@ -68,88 +69,87 @@
         /* 쉐도우 텍스트 스타일 */
         .shadow-text {
             color: transparent;
-            text-shadow: 0 0 3px rgba(0,0,0,0.2); /* 쉐도우 효과 조정 */
-            user-select: none; /* 텍스트 선택 방지 */
+            text-shadow: 0 0 3px rgba(0,0,0,0.2);
+            user-select: none;
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-2 sm:p-4">
+<body>
 
-    <div id="presentation-container" class="w-full max-w-5xl">
+    <div id="presentation-container">
         <!-- 슬라이드 1 -->
-        <div id="slide1" class="slide active p-6 md:p-12 justify-between">
-            <!-- 타이틀 영역 -->
-            <div class="text-center">
-                <h1 class="text-3xl md:text-5xl font-black text-gray-800">신규 입사자, 이런 사람입니다</h1>
-                <p class="text-lg md:text-2xl mt-2 md:mt-3 font-semibold text-gray-700">gon.park(박용곤) / IaaS코어개발팀/네트워크서비스개발</p>
-            </div>
+        <div id="slide1" class="slide active">
+            <div class="w-full h-full max-w-5xl mx-auto flex flex-col justify-center p-6 md:p-12">
+                <!-- 타이틀 영역 -->
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl md:text-5xl font-black text-gray-800">신규 입사자, 이런 사람입니다</h1>
+                    <p class="text-xl md:text-2xl mt-3 font-semibold text-gray-700">gon.park(박용곤) / IaaS코어개발팀/네트워크서비스개발</p>
+                </div>
 
-            <!-- 중단 정보 영역 -->
-            <div class="w-full flex flex-col md:flex-row justify-around items-center text-base md:text-xl bg-amber-300/60 p-3 md:p-6 my-4 rounded-xl shadow-md">
-                <div class="text-center my-2 md:my-0">
-                    <p class="font-bold">이름</p>
-                    <p class="mt-1">박용곤</p>
-                </div>
-                <div class="w-1/2 border-t-2 border-amber-400 md:w-auto md:border-t-0 md:border-l-2 md:h-16"></div>
-                <div class="text-center my-2 md:my-0">
-                    <p class="font-bold">직책/담당업무</p>
-                    <p class="mt-1 text-sm md:text-base">IaaS코어개발팀/네트워크서비스개발<br>
-                        <span>(IGW</span>
-                        <span>/</span><span class="shadow-text">VPC</span>
-                        <span>/</span><span class="shadow-text">LoadBalancer</span>
-                        <span>/</span><span class="shadow-text">NAT</span>
-                        <span>/</span><span class="shadow-text">FW</span>
-                        <span>)</span>
-                    </p>
-                </div>
-                <div class="w-1/2 border-t-2 border-amber-400 md:w-auto md:border-t-0 md:border-l-2 md:h-16"></div>
-                <div class="text-center my-2 md:my-0">
-                    <div class="mb-2">
-                        <p class="font-bold text-green-700">잘하는 것</p>
-                        <p class="mt-1 text-sm md:text-base">✅ 1개에 집중하기</p>
+                <!-- 중단 정보 영역 -->
+                <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row justify-around items-center text-lg md:text-xl bg-amber-300/60 p-4 md:p-6 my-4 rounded-xl shadow-md">
+                    <div class="text-center my-2 md:my-0">
+                        <p class="font-bold">이름</p>
+                        <p class="mt-1">박용곤</p>
                     </div>
-                    <div>
-                        <p class="font-bold text-red-700">못하는 것</p>
-                        <p class="mt-1 text-sm md:text-base">❌ 2개 이상에 집중하기</p>
+                    <div class="w-1/2 border-t-2 border-amber-400 my-2 md:w-auto md:my-0 md:border-t-0 md:border-l-2 md:h-16"></div>
+                    <div class="text-center my-2 md:my-0">
+                        <p class="font-bold">직책/담당업무</p>
+                        <p class="mt-1 text-base md:text-lg">IaaS코어개발팀/네트워크서비스개발<br>
+                            <span>(IGW</span>
+                            <span>/</span><span class="shadow-text">VPC</span>
+                            <span>/</span><span class="shadow-text">LoadBalancer</span>
+                            <span>/</span><span class="shadow-text">NAT</span>
+                            <span>/</span><span class="shadow-text">FW</span>
+                            <span>)</span>
+                        </p>
+                    </div>
+                    <div class="w-1/2 border-t-2 border-amber-400 my-2 md:w-auto md:my-0 md:border-t-0 md:border-l-2 md:h-16"></div>
+                    <div class="text-center my-2 md:my-0">
+                        <div class="mb-2">
+                            <p class="font-bold text-green-700">잘하는 것</p>
+                            <p class="mt-1 text-base md:text-lg">✅ 1개에 집중하기</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-red-700">못하는 것</p>
+                            <p class="mt-1 text-base md:text-lg">❌ 2개 이상에 집중하기</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- 하단 경력 타임라인 (가로형) -->
-            <div class="w-full px-2 pt-4 md:pt-8 pb-4">
-                <div class="relative flex flex-col md:flex-row justify-between items-center md:items-start">
-                    <!-- 가로선 (데스크탑) -->
-                    <div class="absolute top-5 left-0 w-full h-1 bg-amber-500/70 rounded-full hidden md:block"></div>
-                    <!-- 세로선 (모바일) -->
-                    <div class="absolute left-5 top-0 h-full w-1 bg-amber-500/70 rounded-full md:hidden"></div>
-                    
-                    <!-- 타임라인 아이템 -->
-                    <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
-                        <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">T</div>
-                        <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-xs sm:text-sm">
-                            <p class="text-amber-900 font-bold">T<span class="shadow-text">max</span> (4.5년)</p>
-                            <p class="mt-1 text-gray-700">SDN 및 클라우드 네트워크 서비스 개발</p>
+                <!-- 하단 경력 타임라인 (가로형) -->
+                <div class="w-full px-2 pt-4 md:pt-8 pb-4">
+                    <div class="relative flex flex-col md:flex-row justify-between items-center md:items-start">
+                        <div class="absolute top-5 left-0 w-full h-1 bg-amber-500/70 rounded-full hidden md:block"></div>
+                        <div class="absolute left-5 top-0 h-full w-1 bg-amber-500/70 rounded-full md:hidden"></div>
+                        
+                        <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">T</div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-sm sm:text-base">
+                                <p class="text-amber-900 font-bold">T<span class="shadow-text">max</span> (4.5년)</p>
+                                <p class="mt-1 text-gray-700">SDN 및 클라우드 네트워크 서비스 개발</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
-                        <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">K</div>
-                        <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-xs sm:text-sm">
-                            <p class="text-amber-900 font-bold">K<span class="shadow-text">akao</span> (3.5년)</p>
-                            <p class="mt-1 text-gray-700">사내클라우드 서비스 개발</p>
+                        <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">K</div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-sm sm:text-base">
+                                <p class="text-amber-900 font-bold">K<span class="shadow-text">akao</span> (3.5년)</p>
+                                <p class="mt-1 text-gray-700">사내클라우드 서비스 개발</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
-                        <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">H</div>
-                        <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-xs sm:text-sm">
-                            <p class="text-amber-900 font-bold">H<span class="shadow-text">yundai</span> (1.5년)</p>
-                            <p class="mt-1 text-gray-700">사내클라우드 네트워크 서비스 개발</p>
+                        <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1 mb-4 md:mb-0">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold shadow-md">H</div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-sm sm:text-base">
+                                <p class="text-amber-900 font-bold">H<span class="shadow-text">yundai</span> (1.5년)</p>
+                                <p class="mt-1 text-gray-700">사내클라우드 네트워크 서비스 개발</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1">
-                        <div class="z-10 flex-shrink-0 w-10 h-10 bg-sky-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">KE</div>
-                        <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-xs sm:text-sm">
-                            <p class="text-sky-800 font-bold">KakaoEnterprise</p>
-                            <p class="mt-1 text-gray-700">퍼블릭클라우드 네트워크 서비스 개발</p>
+                        <div class="w-full md:w-1/4 flex items-center md:flex-col text-left md:text-center relative px-1">
+                            <div class="z-10 flex-shrink-0 w-10 h-10 bg-sky-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">KE</div>
+                            <div class="ml-6 md:ml-0 md:mt-4 bg-white/50 p-2 rounded-lg shadow-sm w-full text-sm sm:text-base">
+                                <p class="text-sky-800 font-bold">KakaoEnterprise</p>
+                                <p class="mt-1 text-gray-700">퍼블릭클라우드 네트워크 서비스 개발</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,52 +157,57 @@
         </div>
 
         <!-- 슬라이드 2 -->
-        <div id="slide2" class="slide p-6 md:p-12 space-y-2 md:space-y-4">
-            <!-- 타이틀 영역 -->
-            <div class="text-center">
-                <h1 class="text-3xl md:text-5xl font-black text-gray-800">저의 이야기, 그리고 앞으로</h1>
-            </div>
-
-            <!-- 상단 박스 - 기술 경력 키워드 (워드 클라우드) -->
-            <div class="flex-grow flex flex-col relative">
-                <h2 class="absolute top-2 left-4 text-xs sm:text-sm font-bold text-gray-700 bg-white/60 px-3 py-1 rounded-full z-10">제 커리어는</h2>
-                <div class="flex-grow rounded-lg bg-white/40 pt-8 p-2 flex flex-wrap justify-center items-center gap-x-3 md:gap-x-6 gap-y-1">
-                    <span class="text-xl md:text-4xl font-bold text-sky-700">Openstack</span>
-                    <span class="text-lg md:text-2xl font-semibold text-gray-800">Kubernetes</span>
-                    <span class="text-base md:text-lg text-gray-600 -rotate-2">SDN</span>
-                    <span class="text-md md:text-xl font-medium text-gray-700">Go (Golang)</span>
-                    <span class="text-base md:text-lg text-gray-600">NFV</span>
-                    <span class="text-lg md:text-2xl font-semibold text-gray-800 rotate-1">Prometheus</span>
-                    <span class="text-md md:text-xl text-gray-700">CI/CD</span>
-                    <span class="text-base md:text-lg font-medium text-amber-800">VXLAN</span>
-                    <span class="text-xl md:text-3xl font-bold text-gray-900">IaaS</span>
-                    <span class="text-md md:text-xl text-gray-700 -rotate-1">Docker</span>
-                    <span class="text-base md:text-lg text-gray-600">Ansible</span>
+        <div id="slide2" class="slide">
+             <div class="w-full h-full max-w-5xl mx-auto flex flex-col justify-center space-y-4 p-6 md:p-12">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-black text-gray-800">저의 이야기, 그리고 앞으로</h1>
                 </div>
-            </div>
 
-            <!-- 중단 박스 – 각오 -->
-            <div class="bg-amber-400/80 p-4 pt-8 rounded-xl shadow-lg text-center relative">
-                <h2 class="absolute top-2 left-1/2 -translate-x-1/2 text-xs sm:text-sm font-bold text-gray-800 bg-amber-300/80 px-3 py-1 rounded-full">각오</h2>
-                <ul class="flex flex-col sm:flex-row justify-around items-center text-sm md:text-lg font-bold text-gray-800">
-                    <li class="my-1 sm:my-0">#도전하고 성장하기</li>
-                    <li class="my-1 sm:my-0">#이기적이지 않기</li>
-                </ul>
-            </div>
-            
-            <!-- AI 분석 버튼 -->
-            <div class="text-center">
-                <button id="generate-contribution-btn" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-3 text-sm md:text-base rounded-lg transition-transform transform hover:scale-105">
-                    🤖 AI로 기여 방안 분석
-                </button>
-            </div>
+                <div class="flex-grow flex flex-col relative my-4">
+                    <h2 class="absolute top-2 left-4 text-base font-bold text-gray-700 bg-white/60 px-3 py-1 rounded-full z-10">제 커리어는</h2>
+                    <div class="flex-grow rounded-lg bg-white/40 pt-8 p-4 flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6 gap-y-2">
+                        <span class="text-3xl md:text-5xl font-bold text-sky-700 transform -rotate-6">Openstack</span>
+                        <span class="text-2xl md:text-4xl font-semibold text-gray-800 transform rotate-3">Kubernetes</span>
+                        <span class="text-xl md:text-2xl text-gray-600 transform rotate-12">SDN</span>
+                        <span class="text-2xl md:text-3xl font-medium text-gray-700 transform -rotate-3">Go (Golang)</span>
+                        <span class="text-xl md:text-2xl text-gray-600 transform rotate-2">NFV</span>
+                        <span class="text-2xl md:text-4xl font-semibold text-gray-800 transform -rotate-2">Prometheus</span>
+                        <span class="text-xl md:text-2xl text-gray-700 transform rotate-4">CI/CD</span>
+                        <span class="text-lg md:text-xl font-medium text-amber-800 transform -rotate-12">VXLAN</span>
+                        <span class="text-3xl md:text-5xl font-bold text-gray-900 transform rotate-2">IaaS</span>
+                        <span class="text-2xl md:text-3xl text-gray-700 transform -rotate-4">Docker</span>
+                        <span class="text-xl md:text-2xl text-gray-600 transform rotate-8">Ansible</span>
+                        <span class="text-2xl md:text-4xl font-semibold text-sky-600 transform rotate-3">Grafana</span>
+                        <span class="text-xl md:text-3xl font-medium text-gray-700 transform -rotate-2">BGP</span>
+                        <span class="text-lg md:text-2xl text-gray-600 transform rotate-12">SR-IOV</span>
+                        <span class="text-2xl md:text-4xl font-semibold text-gray-800 transform -rotate-3">Python</span>
+                        <span class="text-xl md:text-2xl text-gray-700 transform rotate-2">Terraform</span>
+                        <span class="text-lg md:text-xl font-medium text-amber-800 transform -rotate-8">ArgoCD</span>
+                    </div>
+                </div>
 
-            <!-- 하단 박스 – AI 분석 결과 -->
-            <div id="contribution-result-container" class="bg-white/70 p-4 rounded-xl shadow-inner text-center min-h-[80px] md:min-h-[100px] flex items-center justify-center">
-                <p id="contribution-text" class="text-xs sm:text-sm md:text-base font-semibold leading-relaxed text-gray-700">
-                    버튼을 눌러 저의 기술 스택이 회사에 기여할 수 있는 방안을 AI와 함께 알아보세요!
-                </p>
-                <div id="loader" class="loader hidden"></div>
+                <div class="bg-amber-400/80 p-4 pt-8 rounded-xl shadow-lg text-center relative">
+                    <h2 class="absolute top-2 left-4 text-base font-bold text-gray-800 bg-amber-300/80 px-3 py-1 rounded-full">각오</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm md:text-base font-bold text-gray-800 mt-2">
+                        <span>#도전하고 성장하기</span>
+                        <span>#이기적이지 않기</span>
+                        <span>#근거를 기반으로 주장하기</span>
+                        <span>#궁금하면 해보기</span>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button id="generate-contribution-btn" class="bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 text-base md:text-lg rounded-lg transition-transform transform hover:scale-105">
+                        🤖 AI로 기여 방안 분석
+                    </button>
+                </div>
+
+                <div id="contribution-result-container" class="bg-white/70 p-4 rounded-xl shadow-inner text-center min-h-[100px] flex items-center justify-center">
+                    <p id="contribution-text" class="text-base md:text-lg font-semibold leading-relaxed text-gray-700">
+                        버튼을 눌러 저의 기술 스택이 회사에 기여할 수 있는 방안을 AI와 함께 알아보세요!
+                    </p>
+                    <div id="loader" class="loader hidden"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -243,8 +248,8 @@
             loader.classList.remove('hidden');
             generateBtn.disabled = true;
             
-            const skillSet = "Openstack, Kubernetes, SDN, Go (Golang), NFV, Prometheus, CI/CD, VXLAN, IaaS, Docker, Ansible, Grafana, BGP, SR-IOV, Python, Terraform, ArgoCD, Java, VPC, LoadBalancing, Gitlab, Gin";
-            const prompt = `저는 KakaoEnterprise에 새로 입사한 클라우드 네트워크 개발자입니다. 저의 주요 기술 스택은 다음과 같습니다: ${skillSet}. 이 기술들을 바탕으로 KakaoEnterprise의 퍼블릭 클라우드 서비스 발전에 어떻게 기여할 수 있을지에 대한 구체적이고 전문적인 아이디어를 3-4문장의 한글 문단으로 작성해주세요.`;
+            const skillSet = "Openstack, Kubernetes, SDN, Go (Golang), NFV, Prometheus, CI/CD, VXLAN, IaaS, Docker, Ansible, Grafana, BGP, SR-IOV, Python, Terraform, ArgoCD, Java, VPC, LoadBalancing, Gitlab, Gin, REST API";
+            const prompt = `저는 KakaoEnterprise에 새로 입사한 클라우드 네트워크 개발자입니다. 저의 주요 기술 스택은 다음과 같습니다: ${skillSet}. 이 기술들을 바탕으로 KakaoEnterprise의 퍼블릭 클라우드 서비스 발전에 어떻게 기여할 수 있을지에 대한 구체적이고 전문적인 아이디어를 2문장의 간결한 한글 문단으로 작성해주세요.`;
 
             try {
                 const generatedText = await callGemini(prompt);
